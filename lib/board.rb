@@ -1,48 +1,45 @@
 require 'pry'
 
 class Board
-  attr_accessor :array1, :array2, :array3
-
-  @array1 = Array.new
-  @array2 = Array.new
-  @array3 = Array.new
-  def initialize
-    # puts "|#{a[0]}|#{a[1]}|#{a[2]}|"
-    @array1 = ["_", "_", "_"]
-    @array2 = ["_", "_", "_"]
-    @array3 = ["_", "_", "_"]
+  attr_accessor :array
+  
+  def initialize 
+    @array = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]
   end
 
   def display_board
-    puts "  A B C"
-    puts "1|#{@array1[0]}|#{@array1[1]}|#{@array1[2]}|"
-    puts "2|#{@array2[0]}|#{@array2[1]}|#{@array2[2]}|"
-    puts "3|#{@array3[0]}|#{@array3[1]}|#{@array3[2]}|"
+    puts "  1 2 3"
+    puts "A|#{@array[0]}|#{@array[1]}|#{@array[2]}|"
+    puts "B|#{@array[3]}|#{@array[4]}|#{@array[5]}|"
+    puts "C|#{@array[6]}|#{@array[7]}|#{@array[8]}|"
     puts
   end
 
-  def self.modify_cell(cell)
+  def modify_cell(cell, symbol)
     case cell
     when 'A1'
-      @array1[0] = @current_player_symbol
+      @array[0] = symbol
     when 'A2'
-      @array1[1] = @current_player_symbol
+      @array[1] = symbol
     when 'A3'
-      @array1[2] = @current_player_symbol
+      @array[2] = symbol
     when 'B1'
-      @array2[0] = @current_player_symbol
+      @array[3] = symbol
     when 'B2'
-      @array2[1] = @current_player_symbol
+      @array[4] = symbol
     when 'B3'
-      @array2[2] = @current_player_symbol
+      @array[5] = symbol
     when 'C1'
-      @array3[0] = @current_player_symbol
+      @array[6] = symbol
     when 'C2'
-      @array3[1] = @current_player_symbol
+      @array[7] = symbol
     when 'C3'
-      @array3[2] = @current_player_symbol
+      @array[8] = symbol
     end
-    # display_board
+    puts "le array"
+    puts "!!! #{@array} !!!"
+    display_board
+    @array
   end
 end
 

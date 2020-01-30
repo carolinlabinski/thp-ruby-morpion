@@ -23,14 +23,12 @@ while true #!end_game
 
 
   if count_rounds % 2 == 0
-    @current_player_symbol = 'X'
     print "#{player1.name},"
-    board = player1.make_a_choice
+    player1.make_a_choice('X')
   else
-    @current_player_symbol = 'O'
     print "#{player2.name},"
-    board = player2.make_a_choice
+    player2.make_a_choice('O')
   end
-  board.display_board
+  # board.display_board
   count_rounds += 1
 end

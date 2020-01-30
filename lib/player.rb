@@ -3,6 +3,7 @@ require 'pry'
 class Player
   attr_accessor :name, :symbol
   @@players = Array.new
+  @board = Board.new
   @@already_choosen_choices = Array.new
 
   # tis is initialize method
@@ -24,11 +25,12 @@ class Player
     end
   end
 
-  def make_a_choice
+  def make_a_choice(symbol)
     puts " choisis une case !"
     puts "(Exemple : A1)"
     print "> "
     cell = gets.chomp.to_s
+    save = 0
 
     # While player types wrong input
     while (cell != "A1" && cell != "A2" && cell != "A3" && cell != "B1" && cell != "B2" && cell != "B3" && cell != "C1" && cell != "C2" && cell != "C3") || (@@already_choosen_choices.include? cell)
@@ -46,10 +48,14 @@ class Player
     end
     puts "okkk choix : #{cell}"
     # Board.display_board
-    @@already_choosen_choices << cell
-    return Board.modify_cell(cell)
+    
+    if save == 0
+      @board = Board.new.modify_cell(cell, symbol)
+      @@already_choosen_choices << cell
+      save += 1
+    else
+      @board= @board.modify_cell(cell, symbol)
+    end
   end
 
 end
-
-# binding.pry
