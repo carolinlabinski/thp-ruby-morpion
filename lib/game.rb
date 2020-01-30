@@ -1,48 +1,46 @@
 class Game
 
-  def check_cols
-    array1.each do |i|
-      if array1[i] == array2[i] && array1[i] == array3[i]
-        puts "end_game"
+  def check_rows(array)
+    3.times do |i|
+      if array[i] == array[i+1] && array[i] == array[i+2] && array[i] != "_"
+       return true
+      end
+      i += 2
+    end
+  end
+
+  def check_cols(array)
+    3.times do |i|
+      if array[i] == array[i+3] && array[i] == array[i+6] && array[i] != "_"
+        return true
       end
     end
-
-      # calls end_game if row == XXX or OOO
   end
 
-  def check_rows
-    array1.each do |i|
-      if array1[0] == array1[1] && array1[0] == array1[2] && 
-        puts "end_game"
-      end
+  def check_diags(array)
+    if ((array[0] == array[4] && array[0] == array[8] && array[0] != "_" ) || (array[2] == array[4] && array[2] == array[6] && array[2] != "_"))
+      return true
     end
-    # calls end_game if cols == XXX or OOO
   end
 
-  def check_diags
-    # calls end_game if diags == XXX or OOO
+  def all_cells_filled?(array)
+    if !array.include? '_'
+      return true
+    end
   end
 
-  # Check cols
-  if array1[0] == array2[0] && array1[0] == array3[0]
-    end_game
+  def count
+
   end
-  
 
-# def truc
-  # 3.times do |i|
-    # if colonne i = 0 1 2 
-    # end
-    # if ligne  i = 0 1 2 
-    # end
-  # end
-# 
-
-
-
-  def end_game
-    return false
-    # Says end of game
+  def end_game(array)
+    if all_cells_filled?(array) == true || check_cols(array) == true || check_diags(array) == true || check_rows(array) == true
+      puts "Fin de la partie !"
+      puts "#{@who_is_playing} a gagné !"
+      return true
+    else
+      return false
+    end 
   end
 end
 

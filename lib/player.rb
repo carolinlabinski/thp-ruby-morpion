@@ -25,12 +25,12 @@ class Player
     end
   end
 
-  def make_a_choice(symbol)
+  def make_a_choice(symbol, array)
     puts " choisis une case !"
     puts "(Exemple : A1)"
     print "> "
     cell = gets.chomp.to_s
-    save = 0
+    # save = 0
 
     # While player types wrong input
     while (cell != "A1" && cell != "A2" && cell != "A3" && cell != "B1" && cell != "B2" && cell != "B3" && cell != "C1" && cell != "C2" && cell != "C3") || (@@already_choosen_choices.include? cell)
@@ -47,15 +47,10 @@ class Player
       end
     end
     puts "okkk choix : #{cell}"
-    # Board.display_board
-    
-    if save == 0
-      @board = Board.new.modify_cell(cell, symbol)
-      @@already_choosen_choices << cell
-      save += 1
-    else
-      @board= @board.modify_cell(cell, symbol)
-    end
+
+    array = Board.new.modify_cell(cell, symbol, array)
+    @@already_choosen_choices << cell
+    return array
   end
 
 end
